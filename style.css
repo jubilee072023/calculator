@@ -1,0 +1,27 @@
+html {
+    font-size: 10px;
+    /* font from rel */
+    font-family: "Open Sans", sans-serif;
+    /* alternative css box model */
+    box-sizing: border-box;
+  }
+/* remove exception to fit image to the content */
+*:not(img),
+*::before,
+*::after {
+box-sizing: inherit;
+}
+/* to push footer down */
+body {
+margin: 0;
+min-height: 100vh;
+/* display: flex; */
+/* flex-flow: column wrap; */
+/* gap: 1em; */
+}
+/* must be min- */
+@media screen and (min-width: 750px) {
+    body {
+        flex-direction: row;
+    }
+}
