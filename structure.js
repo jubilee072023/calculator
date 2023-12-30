@@ -23,6 +23,7 @@ const keySubtract = document.createElement("div");
 const keyMultiply = document.createElement("div");
 const keyDivide =  document.createElement("div");
 keys.append(key0, key1, key2, key3, key4)
+// last stop was to append keys and set its class attribute
 // i want to add div keys
 // but enclose them all in an event listener
 // with switch case statements, like in javascript.info
