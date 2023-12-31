@@ -19,7 +19,7 @@ body {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    background-color: #7D0A0A;
+    background-color: #847b45;
 }
 /* must be min- */
 @media screen and (min-width: 750px) {
@@ -27,11 +27,7 @@ body {
         flex-direction: row;
     }
 }
-/* warm retro color palette */
-/* #7D0A0A */
-/* #BF3131 */
-/* #EAD196 */
-/* #F3EDC8 */
+/* Hex Codes: #847b45 #4d675a #f4debe #bfa082 #f5aa5f - (text) */
 .container {
     display: flex;
     border: 5px solid black;
@@ -39,7 +35,7 @@ body {
     min-width: 320px;
     min-height: 500px; /* set to auto later */
     padding: 15px;
-    background-color: #BF3131;
+    background-color: #4d675a;
 }
 .item {
     display: flex;
@@ -48,12 +44,12 @@ body {
     align-items: flex-start;
     border-radius: 10px;
     padding: 10px;
-    background-color: #EAD196;
+    background-color: #f4debe;
 }
 .display {
     display: flex;
     border-radius: 10px;
     min-width: 300px;
     min-height: 50px;
-    background-color: #F3EDC8;
+    background-color: #bfa082;
 }
