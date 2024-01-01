@@ -47,10 +47,16 @@ body {
 .display {
     display: flex;
     flex: auto;
+    align-items: center;
+    justify-content: flex-end;
     border-radius: 5px;
     min-width: 265px;
     min-height: 50px;
     background-color: #f4debe;
+}
+.display > p {
+    font-size: x-large;
+    margin: 0 5px 0;
 }
 .keys {
     display: flex;
