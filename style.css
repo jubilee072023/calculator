@@ -1,5 +1,4 @@
 html {
-    font-size: 10px;
     /* font from rel */
     font-family: "Open Sans", sans-serif;
     /* alternative css box model */
@@ -32,24 +31,35 @@ body {
     display: flex;
     border: 5px solid black;
     border-radius: 10px;
-    min-width: 320px;
-    min-height: 500px; /* set to auto later */
     padding: 15px;
     background-color: #4d675a;
 }
 .item {
     display: flex;
-    flex: auto;
     justify-content: center;
-    align-items: flex-start;
+    flex-flow: column wrap;
+    gap: 5px;
+    align-items: center;
     border-radius: 10px;
     padding: 10px;
-    background-color: #f4debe;
+    background-color: #bfa082;
 }
 .display {
     display: flex;
-    border-radius: 10px;
-    min-width: 300px;
+    flex: auto;
+    border-radius: 5px;
+    min-width: 265px;
     min-height: 50px;
-    background-color: #bfa082;
+    background-color: #f4debe;
+}
+.keys {
+    display: flex;
+    justify-content: center;
+    max-width: 270px;
+    /* background-color: #f4debe; */
+    flex-wrap: wrap;
+}
+.keys > button {
+    min-width: 50px;
+    min-height: 50px;
 }
