@@ -55,7 +55,7 @@ key8.textContent = 8;
 key9.textContent = 9;
 keyAdd.textContent = "+";
 keySubtract.textContent = "-";
-keyMultiply.textContent = "*";
+keyMultiply.textContent = "×";
 keyDivide.textContent = "/";
 keyTotal.textContent = "=";
 keyClear.textContent = "AC";
