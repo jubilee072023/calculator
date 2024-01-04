@@ -14,35 +14,39 @@ function Calculator () {
     }
 }
 
-let operand1 = "";
-let operator = "";
-let operand2 = "";
-let total = "";
-
 function operate (a, op, b) {
     const calculator = new Calculator();
-    aNum = Number(a);
-    bNum = Number(b);
     if (op === "+") {
-        return calculator.add(aNum, bNum);
+        return calculator.add(a, b);
     } else if (op === "-") {
-        return calculator.subtract(aNum, bNum);
+        return calculator.subtract(a, b);
     } else if (op === "*") {
-        return calculator.multiply(aNum, bNum);
+        return calculator.multiply(a, b);
     } else if (op === "/") {
-        return calculator.divide(aNum, bNum);
+        return calculator.divide(a, b);
     }
 }
 
-// this wont make sense when user clicked different operands
-// it will replace the operator
-// so when clicking total, it will output the value from operand1—that
-// comes before when the user clicked an operator–and operand2–when the global
-// variable operator is not empty–out of the global operator's recent clicked operator
-// this case will not work on several operations like the 12 + 7 - 5 * 3 = 42
-
+let operand1 = "";
+let operator = "";
+let operand2 = "";
+let total = 0;
 // when the global variable total has existing value, it will
 // store its value to operand 1 when any of the operator is clicked
+// call the function to calculate
+// if there is total value, move its value to num1 and set the remaining to default
+// the clear will set global variables' value to default
+function calculate (a, op, b) {
+    aNum = Number(a);
+    bNum = Number(b);
+    if (aNum && bNum) {
+        total = operate(aNum, op, bNum);
+    //     operand1 = total;
+    //     total = operate(operand1, op, b);
+    // } else {
+    //     total = operate(aNum, op, bNum);
+    }
+}
 
 function storeToOperands (value) {
     if(!operator) {
@@ -87,27 +91,49 @@ keys.addEventListener("click", (event) => {
             text.textContent = storeToOperands("9");
             break;
         case "keyAdd":
-            // do calculate probably checking for both operands value not empty ?
             let add = "+";
-            text.textContent = add;
-            operate(operand1, add, operand2)
+            keyAdd.classList.add("selected");
+            keySubtract.classList.remove("selected");
+            keyMultiply.classList.remove("selected");
+            keyDivide.classList.remove("selected");
+            text.textContent = calculate(operand1, add, operand2);
             break;
         case "keySubtract":
             let subtract = "-";
-            text.textContent = subtract;
+            keySubtract.classList.add("selected");
+            keyAdd.classList.remove("selected");
+            keyMultiply.classList.remove("selected");
+            keyDivide.classList.remove("selected");
+            // operator = subtract;
+            // text.textContent = subtract;
             break;
         case "keyMultiply":
             let multiply = "*";
-            text.textContent = multiply;
+            keyMultiply.classList.add("selected");
+            keyAdd.classList.remove("selected");
+            keySubtract.classList.remove("selected");
+            keyDivide.classList.remove("selected");
+            // operator = multiply;
+            // text.textContent = multiply;
             break;
         case "keyDivide":
             let divide = "/";
-            text.textContent = divide;
+            keyDivide.classList.add("selected");
+            keyAdd.classList.remove("selected");
+            keySubtract.classList.remove("selected");
+            keyMultiply.classList.remove("selected");
+            // operator = divide;
+            // text.textContent = divide;
             break;
         case "keyTotal":
             operand1 = "";
             operator = "";
             operand2 = "";
+            keyTotal.classList.add("selected");
+            keyAdd.classList.remove("selected");
+            keySubtract.classList.remove("selected");
+            keyMultiply.classList.remove("selected");
+            keyDivide.classList.remove("selected");
             // text.textContent = ; // total calculation
             break;
         case "keyClear":
@@ -115,16 +141,10 @@ keys.addEventListener("click", (event) => {
             operator = "";
             operand2 = "";
             text.textContent = "";
+            keyAdd.classList.remove("selected");
+            keySubtract.classList.remove("selected");
+            keyMultiply.classList.remove("selected");
+            keyDivide.classList.remove("selected");
             break;
     }
 });
-
-// add event delegation here with the id.keys
-// when a specific id is clicked it,
-// will store a value to the global variables
-// will set the value in the display text with it also
-// if the operator is empty all of the clicked numbers will be added += to a (operator1)
-// else it will go to b (operator2)
-// call the function to calculate
-// if there is total value, move its value to num1 and set the remaining to default
-// the clear will set global variables' value to default
