@@ -7,7 +7,7 @@ html {
 *::after {
 box-sizing: inherit;
 }
-body, .container, .item, .display, .keys {
+body, .container, .item, .display, .keys, .display > p {
     display: flex;
 }
 body, .item, .display {
@@ -48,7 +48,6 @@ body {
     border: 2px solid gray;
 }
 .display > p {
-    display: flex;
     overflow-y: hidden;
     justify-content: flex-end;
     flex: auto;
@@ -57,7 +56,7 @@ body {
     max-width: 250px;
 }
 .keys {
-    max-width: 240px;
+    max-width: 230px;
 }
 .keys > button {
     min-width: 50px;
