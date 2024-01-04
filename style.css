@@ -46,6 +46,7 @@ body {
     justify-content: flex-end;
     min-width: 265px;
     background-color: #f4debe;
+    border: 2px solid gray;
 }
 .display > p {
     font-size: x-large;
@@ -56,16 +57,20 @@ body {
 }
 .keys > button {
     min-width: 50px;
+    background-color: #ffffffb2;
+}
+.keys > button:active {
+    background-color: #7ea2903b !important;
 }
 .separator {
-    background-color: #9cc5b1cc;
+    background-color: #9cc5b1cc !important;
 }
-.selected {
-    background-color: #7ea290be;
-}
+/* .selected {
+    background-color: #7ea290be !important;
+} */
 .total {
-    background-color: #e3d79781;
+    background-color: #e3d79781 !important;
 }
 .remove {
-    background-color: #f19e9d71;
+    background-color: #f19e9d71 !important;
 }
