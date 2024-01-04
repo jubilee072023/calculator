@@ -27,9 +27,9 @@ function operate (a, op, b) {
     }
 }
 
-let operand1 = "";
+let operand1 = 0;
 let operator = "";
-let operand2 = "";
+let operand2 = 0;
 let total = 0;
 // when the global variable total has existing value, it will
 // store its value to operand 1 when any of the operator is clicked
@@ -37,14 +37,10 @@ let total = 0;
 // if there is total value, move its value to num1 and set the remaining to default
 // the clear will set global variables' value to default
 function calculate (a, op, b) {
-    aNum = Number(a);
-    bNum = Number(b);
-    if (aNum && bNum) {
-        total = operate(aNum, op, bNum);
-    //     operand1 = total;
-    //     total = operate(operand1, op, b);
-    // } else {
-    //     total = operate(aNum, op, bNum);
+    console.log(a)
+    console.log(b)
+    if (a && b) {
+        total = operate(a, op, b);
     }
 }
 
@@ -61,42 +57,43 @@ keys.addEventListener("click", (event) => {
 
     switch (target.id) {
         case "key0":
-            text.textContent = storeToOperands("0");
+            text.textContent = storeToOperands(0);
             break;
         case "key1":
-            text.textContent = storeToOperands("1");
+            text.textContent = storeToOperands(1);
             break;
         case "key2":
-            text.textContent = storeToOperands("2");
+            text.textContent = storeToOperands(2);
             break;
         case "key3":
-            text.textContent = storeToOperands("3");
+            text.textContent = storeToOperands(3);
             break;
         case "key4":
-            text.textContent = storeToOperands("4");
+            text.textContent = storeToOperands(4);
             break;
         case "key5":
-            text.textContent = storeToOperands("5");
+            text.textContent = storeToOperands(5);
             break;
         case "key6":
-            text.textContent = storeToOperands("6");
+            text.textContent = storeToOperands(6);
             break;
         case "key7":
-            text.textContent = storeToOperands("7");
+            text.textContent = storeToOperands(7);
             break;
         case "key8":
-            text.textContent = storeToOperands("8");
+            text.textContent = storeToOperands(8);
             break;
         case "key9":
-            text.textContent = storeToOperands("9");
+            text.textContent = storeToOperands(9);
             break;
         case "keyAdd":
             let add = "+";
+            text.textContent = add;
+            calculate(operand1, add, operand2);
             keyAdd.classList.add("selected");
             keySubtract.classList.remove("selected");
             keyMultiply.classList.remove("selected");
             keyDivide.classList.remove("selected");
-            text.textContent = calculate(operand1, add, operand2);
             break;
         case "keySubtract":
             let subtract = "-";
@@ -129,12 +126,12 @@ keys.addEventListener("click", (event) => {
             operand1 = "";
             operator = "";
             operand2 = "";
+            text.textContent = total;
             keyTotal.classList.add("selected");
             keyAdd.classList.remove("selected");
             keySubtract.classList.remove("selected");
             keyMultiply.classList.remove("selected");
             keyDivide.classList.remove("selected");
-            // text.textContent = ; // total calculation
             break;
         case "keyClear":
             operand1 = "";
