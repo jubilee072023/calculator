@@ -1,35 +1,36 @@
 function Calculator () {
-    this.add = function (num1, num2) {
-        return num1 + num2;
+    this.add = function (a, b) {
+        return a + b;
     }
-    this.subtract = function (num1, num2) {
-        return num1 - num2;
+    this.subtract = function (a, b) {
+        return a - b;
     }
-    this.multiply = function (num1, num2) {
-        return num1 * num2;
+    this.multiply = function (a, b) {
+        return a * b;
     }
-    this.divide = function (num1, num2) {
-        if (num2 === 0) return "The quotient is Infinity.";
-        return num1 / num2;
+    this.divide = function (a, b) {
+        if (b === 0) return "The quotient is Infinity.";
+        return a / b;
     }
 }
 
-let operand1 = 0;
+let operand1 = "";
 let operator = "";
-let operand2 = 0;
-let total = 0;
+let operand2 = "";
+let total = "";
 
-function operate (num1, operator, num2) {
+function operate (a, op, b) {
     const calculator = new Calculator();
-    // as long as num1 and num2 is not empty, do the operation
-    if (operator === "+") {
-        return calculator.add(num1, num2);
-    } else if (operator === "-") {
-        return calculator.subtract(num1, num2);
-    } else if (operator === "*") {
-        return calculator.multiply(num1, num2);
-    } else if (operator === "/") {
-        return calculator.divide(num1, num2);
+    aNum = Number(a);
+    bNum = Number(b);
+    if (op === "+") {
+        return calculator.add(aNum, bNum);
+    } else if (op === "-") {
+        return calculator.subtract(aNum, bNum);
+    } else if (op === "*") {
+        return calculator.multiply(aNum, bNum);
+    } else if (op === "/") {
+        return calculator.divide(aNum, bNum);
     }
 }
 
@@ -51,91 +52,69 @@ function storeToOperands (value) {
     }
 }
 
-function clearValues () {
-    return {
-        "operand1": 0,
-        "operator": "",
-        "operand2": 0
-    };
-}
-
 keys.addEventListener("click", (event) => {
-    let clear = clearValues();
     let target = event.target;
 
     switch (target.id) {
         case "key0":
-            storeToOperands(0)
-            text.textContent = 0;
+            text.textContent = storeToOperands("0");
             break;
         case "key1":
-            storeToOperands(1)
-            text.textContent = 1;
+            text.textContent = storeToOperands("1");
             break;
         case "key2":
-            storeToOperands(2)
-            text.textContent = 2;
+            text.textContent = storeToOperands("2");
             break;
         case "key3":
-            storeToOperands(3)
-            text.textContent = 3;
+            text.textContent = storeToOperands("3");
             break;
         case "key4":
-            storeToOperands(4)
-            text.textContent = 4;
+            text.textContent = storeToOperands("4");
             break;
         case "key5":
-            storeToOperands(5)
-            text.textContent = 5;
+            text.textContent = storeToOperands("5");
             break;
         case "key6":
-            storeToOperands(6)
-            text.textContent = 6;
+            text.textContent = storeToOperands("6");
             break;
         case "key7":
-            storeToOperands(7)
-            text.textContent = 7;
+            text.textContent = storeToOperands("7");
             break;
         case "key8":
-            storeToOperands(8)
-            text.textContent = 8;
+            text.textContent = storeToOperands("8");
             break;
         case "key9":
-            storeToOperands(9)
-            text.textContent = 9;
+            text.textContent = storeToOperands("9");
             break;
         case "keyAdd":
-            // do calculate probably checking for both operands value not empty
+            // do calculate probably checking for both operands value not empty ?
             let add = "+";
+            text.textContent = add;
             operate(operand1, add, operand2)
-            text.textContent = "+";
             break;
         case "keySubtract":
             let subtract = "-";
-            operate(operand1, subtract, operand2)
-            text.textContent = "-";
+            text.textContent = subtract;
             break;
         case "keyMultiply":
             let multiply = "*";
-            operate(operand1, multiply, operand2)
-            text.textContent = "×";
+            text.textContent = multiply;
             break;
         case "keyDivide":
             let divide = "/";
-            operate(operand1, divide, operand2)
-            text.textContent = "/";
+            text.textContent = divide;
             break;
         case "keyTotal":
-            operand1 = clear.operand1;
-            operator = clear.operator;
-            operand2 = clear.operand2;
-            // text.textContent = 0; // total calculation
+            operand1 = "";
+            operator = "";
+            operand2 = "";
+            // text.textContent = ; // total calculation
             break;
         case "keyClear":
-            operand1 = clear.operand1;
-            operator = clear.operator;
-            operand2 = clear.operand2;
-            text.textContent = 0;
+            operand1 = "";
+            operator = "";
+            operand2 = "";
+            text.textContent = "";
             break;
     }
 });
@@ -144,8 +123,8 @@ keys.addEventListener("click", (event) => {
 // when a specific id is clicked it,
 // will store a value to the global variables
 // will set the value in the display text with it also
-// if the operator is empty all of the clicked numbers will be added += to num1
-// else it will go to num2
+// if the operator is empty all of the clicked numbers will be added += to a (operator1)
+// else it will go to b (operator2)
 // call the function to calculate
 // if there is total value, move its value to num1 and set the remaining to default
 // the clear will set global variables' value to default
