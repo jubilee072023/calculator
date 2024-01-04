@@ -65,9 +65,9 @@ body {
 .separator {
     background-color: #9cc5b1cc !important;
 }
-/* .selected {
+.selected {
     background-color: #7ea290be !important;
-} */
+}
 .total {
     background-color: #e3d79781 !important;
 }
