@@ -30,6 +30,8 @@
     const keyDivide =  document.createElement("button");
     const keyTotal =  document.createElement("button");
     const keyClear =  document.createElement("button");
+    const keyDot =  document.createElement("button");
+    const keyBack =  document.createElement("button");
 
     key1.setAttribute("id", "key1");
     key2.setAttribute("id", "key2");
@@ -48,6 +50,8 @@
     keyDivide.setAttribute("id", "keyDivide");
     keyTotal.setAttribute("id", "keyTotal");
     keyClear.setAttribute("id", "keyClear");
+    keyDot.setAttribute("id", "keyDot");
+    keyBack.setAttribute("id", "keyBack");
     
     key0.textContent = 0;
     key1.textContent = 1;
@@ -66,16 +70,20 @@
     keyDivide.textContent = "/";
     keyTotal.textContent = "=";
     keyClear.textContent = "AC";
+    keyDot.textContent = ".";
+    keyBack.textContent = "DEL";
 
-    keyClear.classList.add("remove");
-    keyTotal.classList.add("total");
     keyAdd.classList.add("separator");
     keySubtract.classList.add("separator");
     keyMultiply.classList.add("separator");
     keyDivide.classList.add("separator");
+    keyTotal.classList.add("total");
+    keyDot.classList.add("total");
+    keyClear.classList.add("remove");
+    keyBack.classList.add("remove");
 
     keys.append(key1, key2, key3, key4, key5, key6, key7, key8, key9, key0,
-        keyAdd, keySubtract,keyClear, keyTotal, keyMultiply, keyDivide);
+        keyAdd, keySubtract, keyDot, keyDivide, keyMultiply, keyTotal, keyClear, keyBack);
     item.appendChild(display);
     item.appendChild(keys);
     display.appendChild(text);
@@ -123,6 +131,14 @@
             return operand1 += value;
         } else {
             return operand2 += value;
+        }
+    }
+
+    function removeFromOperands () {
+        if(!operator) {
+            return operand1 = operand1.slice(0, -1);
+        } else {
+            return operand2 = operand2.slice(0, -1);
         }
     }
 
@@ -234,6 +250,20 @@
                 operator = "";
                 operand2 = "";
                 text.textContent = "";
+                keyAdd.classList.remove("selected");
+                keySubtract.classList.remove("selected");
+                keyMultiply.classList.remove("selected");
+                keyDivide.classList.remove("selected");
+            break;
+            case "keyBack":
+                text.textContent = removeFromOperands();
+                keyAdd.classList.remove("selected");
+                keySubtract.classList.remove("selected");
+                keyMultiply.classList.remove("selected");
+                keyDivide.classList.remove("selected");
+            break;
+            case "keyDot":
+                text.textContent = storeToOperands(".");
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
