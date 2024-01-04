@@ -1,4 +1,4 @@
-// (function(){
+(function(){
     const container = document.querySelector(".container");
 
     const item = document.createElement("div");
@@ -242,4 +242,4 @@
             break;
         };
     });
-// })();
+})();
