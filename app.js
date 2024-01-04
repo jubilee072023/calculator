@@ -13,7 +13,6 @@
     const text = document.createElement("p");
     text.textContent = "";
     
-
     const key1 = document.createElement("button");
     const key2 = document.createElement("button");
     const key3 = document.createElement("button");
@@ -89,17 +88,17 @@
 
     function Calculator () {
         this.add = function (a, b) {
-            return a + b;
+            return +(a + b).toFixed(2);
         }
         this.subtract = function (a, b) {
-            return a - b;
+            return +(a - b).toFixed(2);
         }
         this.multiply = function (a, b) {
-            return a * b;
+            return +(a * b).toFixed(2);
         }
         this.divide = function (a, b) {
             if (b === 0) return "The quotient is Infinity.";
-            return a / b;
+            return +(a / b).toFixed(2);
         }
     }
 
