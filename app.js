@@ -77,15 +77,15 @@
 
     keys.append(key1, key2, key3, key4, key5, key6, key7, key8, key9, key0,
         keyAdd, keySubtract,keyClear, keyTotal, keyMultiply, keyDivide);
-    item.appendChild(keys);
     item.appendChild(display);
+    item.appendChild(keys);
     display.appendChild(text);
     container.appendChild(item);
 
     let operand1 = "";
     let operator = "";
     let operand2 = "";
-    
+
     function Calculator () {
         this.add = function (a, b) {
             return a + b;
@@ -132,34 +132,34 @@
         switch (target.id) {
             case "key0":
                 text.textContent = storeToOperands("0");
-                break;
+            break;
             case "key1":
                 text.textContent = storeToOperands("1");
-                break;
+            break;
             case "key2":
                 text.textContent = storeToOperands("2");
-                break;
+            break;
             case "key3":
                 text.textContent = storeToOperands("3");
-                break;
+            break;
             case "key4":
                 text.textContent = storeToOperands("4");
-                break;
+            break;
             case "key5":
                 text.textContent = storeToOperands("5");
-                break;
+            break;
             case "key6":
                 text.textContent = storeToOperands("6");
-                break;
+            break;
             case "key7":
                 text.textContent = storeToOperands("7");
-                break;
+            break;
             case "key8":
                 text.textContent = storeToOperands("8");
-                break;
+            break;
             case "key9":
                 text.textContent = storeToOperands("9");
-                break;
+            break;
             case "keyAdd":
                 let add = "+";
                 operator = add;
@@ -170,7 +170,7 @@
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
                 keyDivide.classList.remove("selected");
-                break;
+            break;
             case "keySubtract":
                 let subtract = "-";
                 keySubtract.classList.add("selected");
@@ -179,7 +179,7 @@
                 keyDivide.classList.remove("selected");
                 // operator = subtract;
                 // text.textContent = subtract;
-                break;
+            break;
             case "keyMultiply":
                 let multiply = "*";
                 keyMultiply.classList.add("selected");
@@ -188,7 +188,7 @@
                 keyDivide.classList.remove("selected");
                 // operator = multiply;
                 // text.textContent = multiply;
-                break;
+            break;
             case "keyDivide":
                 let divide = "/";
                 keyDivide.classList.add("selected");
@@ -197,7 +197,7 @@
                 keyMultiply.classList.remove("selected");
                 // operator = divide;
                 // text.textContent = divide;
-                break;
+            break;
             case "keyTotal":
                 operand1 = "";
                 operator = "";
@@ -208,7 +208,7 @@
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
                 keyDivide.classList.remove("selected");
-                break;
+            break;
             case "keyClear":
                 operand1 = "";
                 operator = "";
@@ -218,7 +218,7 @@
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
                 keyDivide.classList.remove("selected");
-                break;
-        }
+            break;
+        };
     });
-})()
+})();
