@@ -1,4 +1,4 @@
-// (function(){
+(function(){
     const container = document.querySelector(".container");
 
     const item = document.createElement("div");
@@ -123,7 +123,6 @@
         } else if (op === "/") {
             return calculator.divide(aNum, bNum);
         }
-        if (!aNum || !bNum) return "";
     }
 
     function storeToOperands (value) {
@@ -142,8 +141,7 @@
         }
     }
 
-    function clearExpression () {
-        operand1 = "";
+    function clearTheRest () {
         operator = "";
         operand2 = "";
     }
@@ -155,9 +153,39 @@
         total = 0;
     }
 
-    function calculate (a, op, b, result) {
-        if (!b) {
-            return result = operate(a, op, b);
+    function changeBgColor (key) {
+        let className = "selected";
+        switch (key) {
+            case "keyAdd":
+                keyAdd.classList.add(className);
+                keySubtract.classList.remove(className);
+                keyMultiply.classList.remove(className);
+                keyDivide.classList.remove(className);
+                break;
+            case "keySubtract":
+                keySubtract.classList.add("selected");
+                keyAdd.classList.remove("selected");
+                keyMultiply.classList.remove("selected");
+                keyDivide.classList.remove("selected");
+                break;
+            case "keyMultiply":
+                keyMultiply.classList.add("selected");
+                keyAdd.classList.remove("selected");
+                keySubtract.classList.remove("selected");
+                keyDivide.classList.remove("selected");
+                break;
+            case "keyDivide":
+                keyDivide.classList.add("selected");
+                keyAdd.classList.remove("selected");
+                keySubtract.classList.remove("selected");
+                keyMultiply.classList.remove("selected");
+                break;
+            default:
+                keyAdd.classList.remove("selected");
+                keySubtract.classList.remove("selected");
+                keyMultiply.classList.remove("selected");
+                keyDivide.classList.remove("selected");
+                break;
         }
     }
 
@@ -168,132 +196,94 @@
         switch (target.id) {
             case "key0":
                 text.textContent = storeToOperands("0");
-            break;
+                break;
             case "key1":
                 text.textContent = storeToOperands("1");
-            break;
+                break;
             case "key2":
                 text.textContent = storeToOperands("2");
-            break;
+                break;
             case "key3":
                 text.textContent = storeToOperands("3");
-            break;
+                break;
             case "key4":
                 text.textContent = storeToOperands("4");
-            break;
+                break;
             case "key5":
                 text.textContent = storeToOperands("5");
-            break;
+                break;
             case "key6":
                 text.textContent = storeToOperands("6");
-            break;
+                break;
             case "key7":
                 text.textContent = storeToOperands("7");
-            break;
+                break;
             case "key8":
                 text.textContent = storeToOperands("8");
-            break;
+                break;
             case "key9":
                 text.textContent = storeToOperands("9");
-            break;
+                break;
             case "keyAdd":
                 let add = "+";
                 if (operator && operand2) {
                     total = operate(operand1, operator, operand2);
                     operand1 = total;
-                    operator = "";
-                    operand2 = "";
+                    clearTheRest();
                 }
                 operator = add;
-
-                keyAdd.classList.add("selected");
-                keySubtract.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-                keyDivide.classList.remove("selected");
-            break;
+                changeBgColor("keyAdd");
+                break;
             case "keySubtract":
                 let subtract = "-";
                 if (operator && operand2) {
                     total = operate(operand1, operator, operand2);
                     operand1 = total;
-                    operator = "";
-                    operand2 = "";
+                    clearTheRest();
                 }
                 operator = subtract;
-
-                keySubtract.classList.add("selected");
-                keyAdd.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-                keyDivide.classList.remove("selected");
-            break;
+                changeBgColor("keySubtract");
+                break;
             case "keyMultiply":
                 let multiply = "*";
                 if (operator && operand2) {
                     total = operate(operand1, operator, operand2);
                     operand1 = total;
-                    operator = "";
-                    operand2 = "";
+                    clearTheRest();
                 }
                 operator = multiply;
-
-                keyMultiply.classList.add("selected");
-                keyAdd.classList.remove("selected");
-                keySubtract.classList.remove("selected");
-                keyDivide.classList.remove("selected");
-            break;
+                changeBgColor("keyMultiply");
+                break;
             case "keyDivide":
                 let divide = "/";
                 if (operator && operand2) {
                     total = operate(operand1, operator, operand2);
                     operand1 = total;
-                    operator = "";
-                    operand2 = "";
+                    clearTheRest();
                 }
                 operator = divide;
-
-                keyDivide.classList.add("selected");
-                keyAdd.classList.remove("selected");
-                keySubtract.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-            break;
+                changeBgColor("keyDivide");
+                break;
             case "keyTotal":
                 total = operate(operand1, operator, operand2);
                 text.textContent = total;
                 operand1 = total;
-                operator = "";
-                operand2 = "";
-
-                keyTotal.classList.add("selected");
-                keyAdd.classList.remove("selected");
-                keySubtract.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-                keyDivide.classList.remove("selected");
-            break;
+                clearTheRest();
+                changeBgColor("keyTotal");
+                break;
             case "keyClear":
                 clearAllValues();
                 text.textContent = "";
-
-                keyAdd.classList.remove("selected");
-                keySubtract.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-                keyDivide.classList.remove("selected");
-            break;
+                changeBgColor("keyClear");
+                break;
             case "keyBack":
                 text.textContent = removeFromOperands();
-
-                keyAdd.classList.remove("selected");
-                keySubtract.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-                keyDivide.classList.remove("selected");
+                changeBgColor("keyBack");
             break;
             case "keyDot":
                 text.textContent = storeToOperands(".");
-
-                keyAdd.classList.remove("selected");
-                keySubtract.classList.remove("selected");
-                keyMultiply.classList.remove("selected");
-                keyDivide.classList.remove("selected");
+                changeBgColor("keyBack");
             break;
         };
     });
-// })();
+})();
