@@ -142,25 +142,6 @@
         }
     }
 
-    function clearExpression () {
-        operand1 = "";
-        operator = "";
-        operand2 = "";
-    }
-
-    function clearAllValues () {
-        operand1 = "";
-        operator = "";
-        operand2 = "";
-        total = 0;
-    }
-
-    function calculate (a, op, b, result) {
-        if (!b) {
-            return result = operate(a, op, b);
-        }
-    }
-
     keys.addEventListener("click", (event) => {
 
         let target = event.target;
@@ -198,14 +179,19 @@
             break;
             case "keyAdd":
                 let add = "+";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
+                operator = add;
+                if (operand1 && operator && operand2) {
                     operand1 = total;
-                    operator = "";
+                    total = operate(operand1, operator, operand2);
+                    operator = add;
                     operand2 = "";
                 }
-                operator = add;
-
+                if (total) {
+                    operand1 = total;
+                    operator = add;
+                    total = operate(operand1, operator, operand2);
+                    operand2 = "";
+                }
                 keyAdd.classList.add("selected");
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
@@ -213,14 +199,19 @@
             break;
             case "keySubtract":
                 let subtract = "-";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
+                operator = subtract;
+                if (operand1 && operator && operand2) {
                     operand1 = total;
-                    operator = "";
+                    total = operate(operand1, operator, operand2);
+                    operator = subtract;
                     operand2 = "";
                 }
-                operator = subtract;
-
+                if (total) {
+                    operand1 = total;
+                    operator = subtract;
+                    total = operate(operand1, operator, operand2);
+                    operand2 = "";
+                }
                 keySubtract.classList.add("selected");
                 keyAdd.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
@@ -228,14 +219,19 @@
             break;
             case "keyMultiply":
                 let multiply = "*";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
+                operator = multiply;
+                if (operand1 && operator && operand2) {
                     operand1 = total;
-                    operator = "";
+                    total = operate(operand1, operator, operand2);
+                    operator = multiply;
                     operand2 = "";
                 }
-                operator = multiply;
-
+                if (total) {
+                    operand1 = total;
+                    operator = multiply;
+                    total = operate(operand1, operator, operand2);
+                    operand2 = "";
+                }
                 keyMultiply.classList.add("selected");
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
@@ -243,14 +239,19 @@
             break;
             case "keyDivide":
                 let divide = "/";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
+                operator = divide;
+                if (operand1 && operator && operand2) {
                     operand1 = total;
-                    operator = "";
+                    operator = divide;
+                    total = operate(operand1, operator, operand2);
                     operand2 = "";
                 }
-                operator = divide;
-
+                if (total) {
+                    operand1 = total;
+                    operator = divide;
+                    total = operate(operand1, operator, operand2);
+                    operand2 = "";
+                }
                 keyDivide.classList.add("selected");
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
@@ -259,10 +260,9 @@
             case "keyTotal":
                 total = operate(operand1, operator, operand2);
                 text.textContent = total;
-                operand1 = total;
+                operand1 = "";
                 operator = "";
                 operand2 = "";
-
                 keyTotal.classList.add("selected");
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
@@ -270,9 +270,10 @@
                 keyDivide.classList.remove("selected");
             break;
             case "keyClear":
-                clearAllValues();
+                operand1 = "";
+                operator = "";
+                operand2 = "";
                 text.textContent = "";
-
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
@@ -280,7 +281,6 @@
             break;
             case "keyBack":
                 text.textContent = removeFromOperands();
-
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
@@ -288,7 +288,6 @@
             break;
             case "keyDot":
                 text.textContent = storeToOperands(".");
-
                 keyAdd.classList.remove("selected");
                 keySubtract.classList.remove("selected");
                 keyMultiply.classList.remove("selected");
