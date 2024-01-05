@@ -343,18 +343,6 @@
                 operator = divide;
                 changeBgColor("keyDivide");
                 break;
-            case "÷":
-                calculate();
-                operator = divide;
-                changeBgColor("keyDivide");
-                break;
-            case "=":
-                total = operate(operand1, operator, operand2);
-                text.textContent = total;
-                operand1 = total;
-                clearTheRest();
-                changeBgColor("keyTotal");
-                break;
             case "Enter":
                 total = operate(operand1, operator, operand2);
                 text.textContent = total;
