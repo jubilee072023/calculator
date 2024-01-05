@@ -83,7 +83,7 @@
     keyBack.classList.add("remove");
 
     keys.append(key1, key2, key3, key4, key5, key6, key7, key8, key9, key0,
-        keyAdd, keySubtract, keyDot, keyDivide, keyMultiply, keyTotal, keyClear, keyBack);
+        keyAdd, keySubtract, keyClear, keyMultiply, keyDivide, keyBack, keyDot, keyTotal);
     item.appendChild(display);
     item.appendChild(keys);
     display.appendChild(text);
@@ -189,9 +189,21 @@
         }
     }
 
+    function calculate () {
+        if (operator && operand2) {
+            total = operate(operand1, operator, operand2);
+            operand1 = total;
+            clearTheRest();
+        }
+    }
+
     keys.addEventListener("click", (event) => {
 
         let target = event.target;
+        let add = "+";
+        let subtract = "-";
+        let multiply = "*";
+        let divide = "/";
 
         switch (target.id) {
             case "key0":
@@ -225,42 +237,22 @@
                 text.textContent = storeToOperands("9");
                 break;
             case "keyAdd":
-                let add = "+";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
-                    operand1 = total;
-                    clearTheRest();
-                }
+                calculate();
                 operator = add;
                 changeBgColor("keyAdd");
                 break;
             case "keySubtract":
-                let subtract = "-";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
-                    operand1 = total;
-                    clearTheRest();
-                }
+                calculate();
                 operator = subtract;
                 changeBgColor("keySubtract");
                 break;
             case "keyMultiply":
-                let multiply = "*";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
-                    operand1 = total;
-                    clearTheRest();
-                }
+                calculate();
                 operator = multiply;
                 changeBgColor("keyMultiply");
                 break;
             case "keyDivide":
-                let divide = "/";
-                if (operator && operand2) {
-                    total = operate(operand1, operator, operand2);
-                    operand1 = total;
-                    clearTheRest();
-                }
+                calculate();
                 operator = divide;
                 changeBgColor("keyDivide");
                 break;
@@ -285,5 +277,99 @@
                 changeBgColor("keyBack");
             break;
         };
+    });
+
+    document.addEventListener("keydown", (event) => {
+
+        let target = event.key;
+        let add = "+";
+        let subtract = "-";
+        let multiply = "*";
+        let divide = "/";
+
+        switch (target) {
+            case "0":
+                text.textContent = storeToOperands("0");
+                break;
+            case "1":
+                text.textContent = storeToOperands("1");
+                break;
+            case "2":
+                text.textContent = storeToOperands("2");
+                break;
+            case "3":
+                text.textContent = storeToOperands("3");
+                break;
+            case "4":
+                text.textContent = storeToOperands("4");
+                break;
+            case "5":
+                text.textContent = storeToOperands("5");
+                break;
+            case "6":
+                text.textContent = storeToOperands("6");
+                break;
+            case "7":
+                text.textContent = storeToOperands("7");
+                break;
+            case "8":
+                text.textContent = storeToOperands("8");
+                break;
+            case "9":
+                text.textContent = storeToOperands("9");
+                break;
+            case "+":
+                calculate();
+                operator = add;
+                changeBgColor("keyAdd");
+                break;
+            case "-":
+                calculate();
+                operator = subtract;
+                changeBgColor("keySubtract");
+                break;
+            case "*":
+                calculate();
+                operator = multiply;
+                changeBgColor("keyMultiply");
+                break;
+            case "x":
+                calculate();
+                operator = multiply;
+                changeBgColor("keyMultiply");
+                break;
+            case "/":
+                calculate();
+                operator = divide;
+                changeBgColor("keyDivide");
+                break;
+            case "÷":
+                calculate();
+                operator = divide;
+                changeBgColor("keyDivide");
+                break;
+            case "=":
+                total = operate(operand1, operator, operand2);
+                text.textContent = total;
+                operand1 = total;
+                clearTheRest();
+                changeBgColor("keyTotal");
+                break;
+            case "Enter":
+                total = operate(operand1, operator, operand2);
+                text.textContent = total;
+                operand1 = total;
+                clearTheRest();
+                changeBgColor("keyTotal");
+                break;
+            case "Backspace":
+                text.textContent = removeFromOperands();
+                changeBgColor("keyBack");
+            break;
+            case ".":
+                text.textContent = storeToOperands(".");
+                changeBgColor("keyBack");
+            break;
+        }
     });
 })();
