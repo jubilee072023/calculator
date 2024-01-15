@@ -83,7 +83,7 @@
     keyBack.classList.add("remove");
 
     keys.append(key1, key2, key3, key4, key5, key6, key7, key8, key9, key0,
-        keyAdd, keySubtract, keyDivide, keyMultiply, keyClear, keyTotal, keyDot, keyBack);
+        keyAdd, keySubtract, keyDivide, keyMultiply, keyDot, keyTotal, keyClear, keyBack);
     item.appendChild(display);
     item.appendChild(keys);
     display.appendChild(text);
