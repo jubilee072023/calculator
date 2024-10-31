@@ -466,6 +466,26 @@
 
     }
 
+    function totalAllValues() {
+
+        if (conditionToCalculate()) {
+
+            total = calculate(operand1, operator, operand2);
+
+            operand1 = total;
+            operator = "";
+            operand2 = "";
+
+            return total;
+
+        } else {
+
+            return operand1;
+
+        }
+
+    }
+
     function backspace () {
         
         if(!operator) {
@@ -568,23 +588,7 @@
 
             case "keyTotal":
                 changeBgColor("keyTotal");
-                
-                if (conditionToCalculate()) {
-
-                    total = calculate(operand1, operator, operand2);
-
-                    operand1 = total;
-                    operator = "";
-                    operand2 = "";
-
-                    text.textContent = total;
-
-                } else {
-
-                    text.textContent = operand1;
-
-                }
-
+                text.textContent = totalAllValues();
                 break;
 
             case "keyClear":
@@ -595,15 +599,106 @@
             case "keyBack":
                 changeBgColor("keyBack");
                 text.textContent = backspace();
-            break;
+                break;
 
             case "keyPeriod":
                 changeBgColor("keyBack");
                 text.textContent = storeOperand(".");
-            break;
+                break;
 
         };
 
+    });
+
+    /**
+     * 
+     * Keyboard listener
+     * 
+     */
+
+    document.addEventListener("keydown", (event) => {
+
+        let target = event.key;
+
+        switch (target) {
+
+            case "0":
+                text.textContent = storeOperand("0");
+                break;
+
+            case "1":
+                text.textContent = storeOperand("1");
+                break;
+
+            case "2":
+                text.textContent = storeOperand("2");
+                break;
+
+            case "3":
+                text.textContent = storeOperand("3");
+                break;
+
+            case "4":
+                text.textContent = storeOperand("4");
+                break;
+
+            case "5":
+                text.textContent = storeOperand("5");
+                break;
+
+            case "6":
+                text.textContent = storeOperand("6");
+                break;
+
+            case "7":
+                text.textContent = storeOperand("7");
+                break;
+
+            case "8":
+                text.textContent = storeOperand("8");
+                break;
+
+            case "9":
+                text.textContent = storeOperand("9");
+                break;
+
+            case "+":
+                changeBgColor("keyAdd");
+                text.textContent = storeOperator("+");
+                break;
+
+            case "-":
+                changeBgColor("keySubtract");
+                text.textContent = storeOperator("-");
+                break;
+
+            case "*":
+                changeBgColor("keyMultiply");
+                text.textContent = storeOperator("*");
+                break;
+
+            case "/":
+                changeBgColor("keyDivide");
+                text.textContent = storeOperator("/");
+                break;
+
+            case "Enter":
+                changeBgColor("keyTotal");
+                text.textContent = totalAllValues();
+                break;
+
+            case "Backspace":
+                changeBgColor("keyClear");
+                text.textContent = reload();
+                break;
+
+            case ".":
+                changeBgColor("keyBack");
+                text.textContent = storeOperand(".");
+                break;
+
+        }
+        
     });
 
 })();
